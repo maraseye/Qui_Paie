@@ -100,11 +100,18 @@ body {
   text-align: center;
   padding: 32px 16px 16px;
 }
-.app-header .logo-emoji {
-  font-size: 3.5rem;
-  display: block;
+.app-header .logo-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f7b731, #ff6b35);
+  box-shadow: 0 0 40px rgba(247,183,49,0.4);
   animation: logoBounce 2s ease-in-out infinite;
-  user-select: none;
+  color: #fff;
+  margin-bottom: 4px;
 }
 @keyframes logoBounce {
   0%, 100% { transform: translateY(0) rotate(-5deg); }
@@ -166,6 +173,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 /* =============================================
@@ -256,10 +264,11 @@ body {
   border-color: var(--color-primary);
   box-shadow: var(--shadow-card), var(--shadow-glow);
 }
-.result-avatar {
-  font-size: 2.5rem;
-  display: block;
-  margin-bottom: 6px;
+.result-avatar-wrap, .result-avatar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
   animation: resultAvatarPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 @keyframes resultAvatarPop {
@@ -355,7 +364,7 @@ body {
   text-decoration: line-through;
   filter: grayscale(1);
 }
-.participant-avatar { font-size: 1.3rem; flex-shrink: 0; }
+/* Avatar is rendered inline via the Avatar component */
 .participant-name {
   flex: 1;
   font-weight: 800;
@@ -371,6 +380,8 @@ body {
   padding: 2px 8px;
   border-radius: 20px;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
 }
 .badge-excluded { background: rgba(255,71,87,0.2); color: var(--color-danger); }
 .badge-paid { background: rgba(247,183,49,0.2); color: var(--color-primary); }
@@ -380,11 +391,12 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px 6px;
+  padding: 5px 7px;
   border-radius: 8px;
-  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
   transition: var(--transition);
-  opacity: 0.6;
+  opacity: 0.7;
 }
 .icon-btn:hover { background: rgba(255,255,255,0.12); opacity: 1; }
 
@@ -393,8 +405,11 @@ body {
   padding: 32px 16px;
   color: var(--color-text-muted);
   font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
-.empty-state .empty-emoji { font-size: 2.5rem; display: block; margin-bottom: 10px; }
 .empty-state p { font-size: 0.9rem; line-height: 1.5; }
 
 /* Actions */
@@ -453,7 +468,6 @@ body {
 /* =============================================
    HISTORY SECTION
    ============================================= */
-.history-section {}
 .history-list {
   display: flex;
   flex-wrap: wrap;
@@ -577,10 +591,10 @@ body {
 .modal-overlay.active .modal {
   transform: scale(1) translateY(0);
 }
-.modal-emoji {
-  font-size: 4rem;
-  display: block;
-  margin-bottom: 12px;
+.modal-avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
   animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 @keyframes popIn {
@@ -615,12 +629,12 @@ body {
   gap: 12px;
   flex-direction: column;
 }
-.modal-actions .btn-outline {
+.btn-outline {
   background: transparent;
   border: 1.5px solid rgba(255,71,87,0.4);
   color: var(--color-danger);
 }
-.modal-actions .btn-outline:hover { background: rgba(255,71,87,0.1); }
+.btn-outline:hover { background: rgba(255,71,87,0.1); }
 
 /* =============================================
    SPINNING ANIMATION
@@ -636,7 +650,7 @@ body {
   .app-container { padding: 12px; gap: 16px; }
   .glass-card { padding: 16px; }
   .app-header { padding: 20px 8px 8px; }
-  .app-header .logo-emoji { font-size: 2.5rem; }
+  .app-header .logo-icon-wrap { width: 52px; height: 52px; }
   .modal { padding: 28px 20px; }
   .modal-winner-name { font-size: 2rem; }
   .panel-actions { flex-direction: column; }

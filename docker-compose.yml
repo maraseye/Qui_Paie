@@ -1,0 +1,29 @@
+services:
+  qui-paie:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: qui-paie
+    restart: unless-stopped
+    ports:
+      - "80:80"        # Change to "8080:80" if port 80 is taken (e.g. Traefik in front)
+    # ── Uncomment the block below to use Traefik as reverse proxy ──
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.qui-paie.rule=Host(`qui-paie.yourdomain.com`)"
+    #   - "traefik.http.routers.qui-paie.entrypoints=websecure"
+    #   - "traefik.http.routers.qui-paie.tls.certresolver=letsencrypt"
+    #   - "traefik.http.services.qui-paie.loadbalancer.server.port=80"
+    # networks:
+    #   - traefik_proxy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+# ── Uncomment if using Traefik ──
+# networks:
+#   traefik_proxy:
+#     external: true
