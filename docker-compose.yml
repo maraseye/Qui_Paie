@@ -5,21 +5,16 @@ services:
       dockerfile: Dockerfile
     container_name: qui-paie
     restart: unless-stopped
-    # ── Traefik (Dokploy) labels ──
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.qui-paie.rule=Host(`qui-paie.TON-DOMAINE.com`)"
+      - "traefik.http.routers.qui-paie.rule=Host(`kouyfay.teamghosts.team`)"
       - "traefik.http.routers.qui-paie.entrypoints=websecure"
       - "traefik.http.routers.qui-paie.tls.certresolver=letsencrypt"
       - "traefik.http.services.qui-paie.loadbalancer.server.port=80"
     networks:
       - dokploy-network
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost/"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
+      disable: true
 
 networks:
   dokploy-network:
